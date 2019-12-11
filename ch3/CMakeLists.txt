@@ -1,0 +1,18 @@
+# 声明要求的 cmake 最低版本
+cmake_minimum_required(VERSION 2.8)
+
+# 声明一个 cmake 工程
+project(ch2)
+
+# 设置编译模式
+set(CMAKE_BUILD_TYPE "Debug")
+
+SET(CMAKE_CXX_FLAGS "-std=c++11 -O3") #加的，要不然会报错
+
+include_directories("/usr/include/eigen3")
+add_executable(coordinateTransform coordinateTransform.cpp)
+
+find_package(Pangolin REQUIRED)
+include_directories(${Pangolin_INCLUDE_DIRS})
+add_executable(plotTrajectory plotTrajectory.cpp)
+target_link_libraries(plotTrajectory ${Pangolin_LIBRARIES})
